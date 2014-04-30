@@ -1,0 +1,39 @@
+Online Python IDE And Intrepreter
+
+Problem
+Currently there are few opensource solutions to coding and running online, this app will allow users to upload and save python code to the server and run it in browser
+
+Current Layout
+Home Page (Login/Sign-Up)
+File Directory Page
+Editing/Compiling Page
+
+Implementation
+File Directory
+A DropBox-esque page listing all of the files within a user's folder
+
+Editing/Compiling Page
+ACE Editor
+Set to Python mode for syntax highlighting
+Full Screen Mode - AKA Zen Mode
+
+Compiling
+Use of Skulpt will allow in-browser python
+
+CSS Layout
+A minimalistic design with use of opensource icons and fonts
+Whitespace color scheme
+
+Future Add-Ons
+GitHub Integration - Use of PyGithub
+Sharing Files to Others
+Make Posts to Facebook, Twitter, etc about your coding
+Folder Upload
+Sign In Intergration with ASMSA Login Tables
+
+Future Future Future Add-Ons
+Buy Server and codebin.io
+Port code to codebin.io
+Make money from ads/donations
+Remove Dependency on Skulpt and Use Virtual Machines
+Remain Virgin
