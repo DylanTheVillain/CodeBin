@@ -3,15 +3,13 @@ html {
 	min-width: 650px;
 }
 
+body {
+}
+
 #editor { 
-    position: absolute;
-        top: 100px;
-    	left: 50%;
-
-    margin-left:-300px;
-
+    
     width: 100%;
-    height: 500px;
+    height: 100%;
 
     border-style: solid;
     border-color: #D3D3D3;
@@ -19,5 +17,6 @@ html {
 }
 
 #body-content {
-	margin: 0 auto;
+    width: 100%;
+	height: 700px;
 }
