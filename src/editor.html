@@ -2,25 +2,99 @@
 <html lang="en">
 
 <head>
-    <title>ACE in Action</title>
-    <link rel="stylesheet" type="text/css" href="editor.css"/>
+    <title>CodeBin</title>
+    <link rel="stylesheet" type="text/css" href="./css/editor.css"/>
+
+    <link rel="stylesheet" rel="stylesheet" type="text/css" media="screen" href="http://openfontlibrary.org/face/hans-kendrick"/>
+    <link rel="stylesheet" href="./bin/icons/font-awesome-4.0.3/css/font-awesome.min.css"/>
+
+
 </head>
 
 <body>
-
     <div id="header-content">
-        <h1>CodeBin</h1>
+        <h1 id="logo">CodeBin</h1>
+
+	    <i class="fa fa-camera-retro icon"></i>
+		<i class="fa fa-bookmark icon"></i>
+		<i class="fa fa-spinner fa-spin icon"></i>
     </div>
 
     <div id="body-content">
-
         <div id="editor">print "Hello World!"</div>
-        <script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var editor=ace.edit("editor");
-            editor.setTheme("ace/theme/tomorrow_night");
-            editor.getSession().setMode("ace/mode/python");
-        </script>
+       
     </div>
 </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor=ace.edit("editor");
+        editor.setTheme("ace/theme/tomorrow_night");
+        editor.getSession().setMode("ace/mode/python");
+   	</script>	
+
+
+<script type="text/javascript"> 
+// output functions are configurable.  This one just appends some text
+// to a pre element.
+function outf(text) { 
+    var mypre = document.getElementById("output"); 
+    mypre.innerHTML = mypre.innerHTML + text; 
+} 
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+ 
+// Here's everything you need to run a python program in skulpt
+// grab the code from your textarea
+// get a reference to your pre element for output
+// configure the output function
+// call Sk.importMainWithBody()
+function runit() { 
+   var prog = document.getElementById("yourcode").value; 
+   var mypre = document.getElementById("output"); 
+   mypre.innerHTML = ''; 
+   Sk.canvas = "mycanvas";
+   Sk.pre = "output";
+   Sk.configure({output:outf, read:builtinRead}); 
+   eval(Sk.importMainWithBody("<stdin>",false,prog)); 
+} 
+</script> 
+
 </html>
