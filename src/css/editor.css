@@ -4,33 +4,57 @@ html {
 }
 
 body {
-        overflow-y: hidden;
-        overflow-x: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 
-        background-color: #fefdfb;
+  background-color: #fefdfb;
 }
 
 #logo {
-   font-family: 'Hans Kendrick'; 
-   font-weight: normal; 
-   font-style: normal; 
+ font-family: 'Hans Kendrick'; 
+ font-weight: normal; 
+ font-style: normal; 
 }
 
 #editor { 
     
-    width: 50%;
-    height: 100%;
+  width: 50%;
+  height: 100%;
 
-    margin:0 auto;
+  margin:0 auto;
 
-    border-style: solid;
-    border-color: #D3D3D3;
-    border-width: 1px;
+  border-style: solid;
+  border-color: #D3D3D3;
+  border-width: 1px;
 
 
 }
 
 #body-content {
-    width: 100%;
+  width: 100%;
 	height: 700px;
+}
+
+.icon {
+  font-size: 1.5em;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: red;
+}
+
+.run-button {
+  background-color: #c4f1fe;
+  color: #2d525d;
+}
+
+#run-icon {
+}
+
+#run-label {
+  color:;
 }
