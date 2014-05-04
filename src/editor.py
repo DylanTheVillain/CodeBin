@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+import cgi
+form=cgi.FieldStorage()
+print "Content-Type: text/html\n"
+print """<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,7 +14,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script> 
     <script src="./js/skulpt.min.js" type="text/javascript"></script> 
-    <script src="./js/skulpt-stdlib.js" type="text/javascript"></script>
+    <script src="./js/skulpt-stdlib.js" type="text/javascript"></script> 
     <script type="text/javascript">
       //Skeleton for loading the python code from a .txt file
       function LoadPython()
@@ -28,12 +31,22 @@
             document.getElementById("editor").innerHTML="Error.";
           }
         }
-        xmlhttp.open("GET","backend.py",true);
+"""
+try:
+  print "xmlhttp.open('GET','backend.py?file="+form['scriptName'].value+"',true);"
+except:
+  print """xmlhttp.open("GET","backend.py",true);"""
+print """
         xmlhttp.send();
       }
     </script> 
-</head>
-
+</head>"""
+try:
+  form['scriptName'].value
+  print "<body onload='LoadPython();'>"
+except:
+  print "<body>"
+print """
 <body>
 
   <script type="text/javascript"> 
@@ -91,4 +104,4 @@
 
 </body>
 
-</html>
+</html>"""

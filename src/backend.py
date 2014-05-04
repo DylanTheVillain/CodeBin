@@ -20,7 +20,7 @@ if (int(form['pick'])==1):
 	if (len(fileName)==0):
 		print "This file no longer exists."
 	else:
-		fi=open(str(form['file'].value)+".py","r")
+		fi=open(str(form['file'].value)+".txt","r")
 		for line in fi:
 			print line
 		fi.close()
