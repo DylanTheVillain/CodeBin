@@ -35,7 +35,7 @@
     // configure the output function
     // call Sk.importMainWithBody()
     function runit() { 
-       var prog = document.getElementById("editor").value; 
+       var prog = editor.getSession().getValue(); 
        var mypre = document.getElementById("output"); 
        mypre.innerHTML = ''; 
        Sk.canvas = "mycanvas";
@@ -52,18 +52,8 @@
   </div>
 
   <div id="body-content">
-      <form id="body-form"> 
-
-        <textarea id="editor" cols="40" rows="10">
-          import turtle
-           
-          t = turtle.Turtle()
-          t.forward(100)
-           
-          print "Hello World" 
-        </textarea><br /> 
-
-        <!--<div id="editor">print "Hello World!"</div>-->
+      <form id="body-form">  
+        <div id="editor">print "Hello World!"</div>
         <div id="output">
           <canvas id="mycanvas" ></mycanvas> 
         </div>
@@ -71,7 +61,13 @@
       </form>  
   </div>
 
-  
+  <script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+      var editor=ace.edit("editor");
+      editor.setTheme("ace/theme/tomorrow_night");
+      editor.getSession().setMode("ace/mode/python");
+      editor.setFontSize(12);
+ 	</script>	
 
 </body>
 
