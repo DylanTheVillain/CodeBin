@@ -46,6 +46,7 @@ body {
 
   float:left;
   overflow-y: auto; 
+
 }
 
 #run-button {
@@ -55,4 +56,11 @@ body {
   position: absolute;
     top: 0;
     right: 10px;
+}
+
+#footer-content {
+  height: 5%;
+
+  position: absolute;
+    bottom: 0px;
 }
