@@ -52,17 +52,24 @@
 
       //Konami Code Implementation
       if (window.addEventListener) {
-        var keys = [],
-            konami = "38,38,40,40,37,39,37,39,66,65";
-        
+        var keys = [];
+        var konami = "38,38,40,40,37,39,37,39,66,65";
+        var r_konami = "65,66,39,37,39,37,40,40,38,38";
+        var index=0;
+
         window.addEventListener("keydown", function(e){
             keys.push(e.keyCode);
             
             if (keys.toString().indexOf(konami) >= 0) {
-                var rickroll = new Sound("bin/mp3/rickroll.mp3",100,true);
-                rickroll.start();
-                keys = [];
+              var bg=["./bin/img/bunny-fail.gif","./bin/img/tab.gif","./bin/img/laughing.gif","./bin/img/condor.gif","./bin/img/ugh.gif","./bin/img/energy.gif"];             
+              var bg_file=bg[index];
+
+              document.body.style.backgroundImage="url("+bg_file+")";
+              index+=1;
+
+              keys = [];
             };
+
         }, true);
       };
 
@@ -123,7 +130,7 @@
  
 
   <div id="header-content">
-    <h1 id="logo">CodeBin</h1>
+    <a class="easter-egg" href="#" onclick="startRickRoll()"><h1 id="logo">CodeBin</h1></a>
 
   </div>
 
@@ -134,12 +141,11 @@
           <canvas id="mycanvas" ></mycanvas> 
         </div>
         <button id="run-button" type="button" onclick="runit()">Run</button> 
-        <button id="rick-button" type="button" onclick="startRickRoll()">Run</button>
       </form>  
   </div>
 
   <div id="footer-content">
-    <p>CodeBin Copyright 2014 Written By <a class="easter-egg" href="http://bit.ly/1eUpyT1">Alex Jaeger</a> and <a class="easter-egg" href="http://bit.ly/ISHK7f">Dylan Johnson</a>. Documentation and Support provided by the <a class="easter-egg" href="http://bit.ly/1kAxgF7">Condor</a></p>
+    <p>CodeBin Copyright 2014 Written By <a class="easter-egg" href="http://bit.ly/1eUpyT1">Alex Jaeger</a> and <a class="easter-egg" href="http://bit.ly/ISHK7f">Dylan Johnson</a>. Documentation and Support provided by the <a class="easter-egg" href="./bin/img/california-condor.jpg">Condor</a></p>
   </div>
 
   <script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
