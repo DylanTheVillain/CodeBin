@@ -9,6 +9,10 @@ body {
   background-color: #fefdfb;
 }
 
+#header-content {
+  height:85px;
+}
+
 #logo {
  font-family: 'Hans Kendrick'; 
  font-weight: normal; 
@@ -54,8 +58,17 @@ body {
   color: #2d525d;
 
   position: absolute;
-    top: 0;
-    right: 10px;
+    top: 75px;
+    left: 10px;
+}
+
+.easter-egg {
+  text-decoration: none;
+  color: black;
+}
+
+.easter-egg:hover {
+  color:red;
 }
 
 #footer-content {
