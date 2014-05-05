@@ -61,11 +61,18 @@
             keys.push(e.keyCode);
             
             if (keys.toString().indexOf(konami) >= 0) {
-              var bg=["./bin/img/bunny-fail.gif","./bin/img/tab.gif","./bin/img/laughing.gif","./bin/img/condor.gif","./bin/img/ugh.gif","./bin/img/energy.gif"];             
+              var bg=["./bin/img/bunny-fail.gif","./bin/img/tab.gif","./bin/img/laughing.gif","./bin/img/beer.gif","./bin/img/ugh.gif","./bin/img/energy.gif"];             
               var bg_file=bg[index];
 
               document.body.style.backgroundImage="url("+bg_file+")";
-              index+=1;
+              
+              if(index>5) {
+                index=0;
+              }
+
+              else {
+                index++;
+              }
 
               keys = [];
             };
