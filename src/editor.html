@@ -14,17 +14,13 @@
     <script src="./js/skulpt-stdlib.js" type="text/javascript"></script>
     <script type="text/javascript">
       //Skeleton for loading the python code from a .txt file
-      function LoadPython()
-      {
+      function LoadPython() {
         xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function()
-        {
-          if (xmlhttp.readyState==4 && xmlhttp.status==200)
-          {
+        xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
             document.getElementById("editor").innerHTML=xmlhttp.responseText;
           }
-          else if (xmlhttp.status==404)
-          {
+          else if (xmlhttp.status==404) {
             document.getElementById("editor").innerHTML="Error.";
           }
         }
@@ -77,7 +73,7 @@
         <div id="output">
           <canvas id="mycanvas" ></mycanvas> 
         </div>
-        <button type="button" onclick="runit()">Run</button> 
+        <button id="run-button" type="button" onclick="runit()">Run</button> 
       </form>  
   </div>
 

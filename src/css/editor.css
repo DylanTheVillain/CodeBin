@@ -4,9 +4,8 @@ html {
 }
 
 body {
-  overflow-y: hidden;
   overflow-x: hidden;
-
+  overflow-y: hidden; 
   background-color: #fefdfb;
 }
 
@@ -27,48 +26,33 @@ body {
 }
 
 #editor {   
-  width: 45%;
-  height: 100%;
+  width: 49%;
+  height: 95%;
 
   border-style: solid;
   border-color: #D3D3D3;
   border-width: 1px;
 
   float: left;
+
 }
 
 #output {
   postion:absolute;
     left:0px;
 
-  width:45%;
-  height:100%;
+  width: 49%;
+  height: 95%;
 
-  background-color: white;
-
-  float:right;
+  float:left;
+  overflow-y: auto; 
 }
 
-.icon {
-  font-size: 1.5em;
-}
-
-a {
-  color: black;
-}
-
-a:hover {
-  color: red;
-}
-
-.run-button {
+#run-button {
   background-color: #c4f1fe;
   color: #2d525d;
-}
 
-#run-icon {
-}
-
-#run-label {
-  color:;
+  position: absolute;
+    top: 0;
+    right: 10px;
 }
