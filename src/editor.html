@@ -13,6 +13,30 @@
     <script src="./js/skulpt.min.js" type="text/javascript"></script> 
     <script src="./js/skulpt-stdlib.js" type="text/javascript"></script>
     <script type="text/javascript">
+
+      //Konami Code Implementation
+      if (window.addEventListener) {
+        // create the keys and konami variables
+        var keys = [],
+            konami = "38,38,40,40,37,39,37,39,66,65";
+        
+        // bind the keydown event to the Konami function
+        window.addEventListener("keydown", function(e){
+            // push the keycode to the 'keys' array
+            keys.push(e.keyCode);
+            
+            // and check to see if the user has entered the Konami code
+            if (keys.toString().indexOf(konami) >= 0) {
+                // do something such as:
+                location.href = 'http://bit.ly/1ncUdVn';
+                
+                // and finally clean up the keys array
+                keys = [];
+            };
+        }, true);
+      };
+
+
       //Skeleton for loading the python code from a .txt file
       function LoadPython() {
         xmlhttp=new XMLHttpRequest();
@@ -78,7 +102,7 @@
   </div>
 
   <div id="footer-content">
-    <p>CodeBin Copyright 2014 Written By Alex Jaeger and Dylan Johnson</p>
+    <p>CodeBin Copyright 2014 Written By <a class="easter-egg" href="http://bit.ly/1eUpyT1">Alex Jaeger</a> and <a class="easter-egg" href="http://bit.ly/ISHK7f">Dylan Johnson</a>. Documentation and Support provided by the <a class="easter-egg" href="http://bit.ly/1kAxgF7">Condor</a></p>
   </div>
 
   <script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
