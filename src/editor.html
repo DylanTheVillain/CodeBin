@@ -14,28 +14,63 @@
     <script src="./js/skulpt-stdlib.js" type="text/javascript"></script>
     <script type="text/javascript">
 
+    function Sound(source,volume,loop)
+    {
+      this.source=source;
+      this.volume=volume;
+      this.loop=loop;
+      var son;
+      this.son=son;
+      this.finish=false;
+      this.stop=function()
+      {
+          document.body.removeChild(this.son);
+      }
+      this.start=function()
+      {
+          if(this.finish)return false;
+          this.son=document.createElement("embed");
+          this.son.setAttribute("src",this.source);
+          this.son.setAttribute("hidden","true");
+          this.son.setAttribute("volume",this.volume);
+          this.son.setAttribute("autostart","true");
+          this.son.setAttribute("loop",this.loop);
+          document.body.appendChild(this.son);
+      }
+      this.remove=function()
+      {
+          document.body.removeChild(this.son);
+          this.finish=true;
+      }
+      this.init=function(volume,loop)
+      {
+          this.finish=false;
+          this.volume=volume;
+          this.loop=loop;
+      }
+    }
+
       //Konami Code Implementation
       if (window.addEventListener) {
-        // create the keys and konami variables
         var keys = [],
             konami = "38,38,40,40,37,39,37,39,66,65";
         
-        // bind the keydown event to the Konami function
         window.addEventListener("keydown", function(e){
-            // push the keycode to the 'keys' array
             keys.push(e.keyCode);
             
-            // and check to see if the user has entered the Konami code
             if (keys.toString().indexOf(konami) >= 0) {
-                // do something such as:
-                location.href = 'http://bit.ly/1ncVBr2';
-                
-                // and finally clean up the keys array
+                var rickroll = new Sound("bin/mp3/rickroll.mp3",100,true);
+                rickroll.start();
                 keys = [];
             };
         }, true);
       };
 
+
+      function startRickRoll() {
+        var rickroll = new Sound("bin/mp3/rickroll.mp3",100,true);
+        rickroll.start();
+      }
 
       //Skeleton for loading the python code from a .txt file
       function LoadPython() {
@@ -98,6 +133,7 @@
           <canvas id="mycanvas" ></mycanvas> 
         </div>
         <button id="run-button" type="button" onclick="runit()">Run</button> 
+        <button id="rick-button" type="button" onclick="startRickRoll()">Run</button>
       </form>  
   </div>
 
