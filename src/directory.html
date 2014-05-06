@@ -4,18 +4,43 @@
 	<title>File Directory</title>
 
 	<link rel="stylesheet" href="./bin/icons/font-awesome-4.0.3/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="./css/directory.css">
+
+	<script type="text/javascript" src="./js/directory.js"></script>
+
 </head>
 
 <body>
 	<div id="content">
 		<div id="header-content">
-			<div id="toolbar">
-				<i class="fa fa-edit fa-5x"></i>
+			
+		<!--
+			<div id="titlebar">
+				<h1>CodeBin</h1>
 			</div>
+
+			<div id="toolbar">
+				<a class="title-bar-link" href="#" onclick=""><i class="fa fa-edit title-bar-icon"></i></a>
+
+				<a class="title-bar-link" href="#" onclick=""><i class="fa fa-edit title-bar-icon"></i></a>
+			</div>
+		-->
 		</div>
 
 		<div id="body-content">
+			<div id="directory-frame">
+				<ul id="directory">	
+					<li class="directory-listing">
+						<div class="file">
+							<a class="file-link" href="#" onclick=""><i class="fa fa-edit file-icon"></i></a>
+							<label class="filename">Backend.py</label>
+						</div>
+					</li>	
+				</ul>
 
+				<button onclick="addFileListing('directory','directory-listing')"></button>
+
+			</div>
 		</div>
 
 		<div id="footer-content">

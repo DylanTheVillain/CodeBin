@@ -1,0 +1,8 @@
+
+.file {
+	background-color: white;
+}
+
+.file:hover {
+	background-color: red;
+}
