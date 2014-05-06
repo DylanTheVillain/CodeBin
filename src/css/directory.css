@@ -6,3 +6,7 @@
 .file:hover {
 	background-color: red;
 }
+
+.directory-listing {
+	list-style-type: none;
+}
