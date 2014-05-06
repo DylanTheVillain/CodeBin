@@ -4,9 +4,15 @@
 }
 
 .file:hover {
-	background-color: red;
+
 }
 
 .directory-listing {
 	list-style-type: none;
+}
+
+
+.file-icon {
+	margin:0 10px;
+	padding: 5px;
 }
