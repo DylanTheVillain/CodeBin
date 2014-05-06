@@ -18,6 +18,13 @@ file_id=0;
 var selectedFiles=[];
 var files=[];
 
+
+/*
+	Adds a file listing to the ul
+
+	@param ul_ID the id of the ul
+	@param li_CLASS the class of the li
+*/
 function addFileListing(ul_ID, li_CLASS) {
 	$("#"+ul_ID).append('<li class="directory-listing" data-id='+file_id+'><div class="file"><a class="file-link" href="#" onclick="selectFileListing('+file_id+')"><i class="fa fa-square-o file-icon"></i></a><label class="filename">Backend.py</label></div></li>');
 	file_id+=1;
@@ -34,9 +41,7 @@ function selectFileListing(file_ID) {
 
 	if(icon.className=="fa fa-square-o file-icon") {
 		icon.className="fa fa-check-square-o file-icon";
-	}
-	
-	else {
+	} else {
 		icon.className="fa fa-square-o file-icon";
 	}
 }
