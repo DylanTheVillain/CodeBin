@@ -41,12 +41,19 @@ function deleteFileListing() {
 	for(var i=0;i<selectedFiles.length;i++) {
 		var elem=selectedFiles[i];
 		elem.parentNode.removeChild(elem);
-		
+
 		selectedFiles[i]=null;
 		file_id--;
 	}
 
 	return false;
+}
+
+function downloadFileListing() {
+	alert("test");
+	for(var i=0;i<selectedFiles.length;i++) {
+		console.log(i);
+	}
 }
 
 function selectFileListing(file_ID) {
