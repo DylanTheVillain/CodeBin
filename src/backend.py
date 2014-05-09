@@ -33,11 +33,9 @@ def GenFileName():
 		cur.execute("SELECT COUNT(filename) FROM filetable WHERE filename=%s",fiName)
 		count=con.commit()
 		if (count==None):
-			cur.execute("INSERT INTO `filetable`(`filename`, `filehash`, `lastaccess`) VALUES (%s,%s,%s)",(fiName,tsHash,ts))
+			cur.execute("INSERT INTO filetable (source,filename,filehash,lastaccess) VALUES (%s,%s,%s,%s)",(str(form['code'].value),fiName,tsHash,ts))
 			con.commit()
 			break
-
-
 
 if (int(form['pick'].value)==1):
 	GenFileName()

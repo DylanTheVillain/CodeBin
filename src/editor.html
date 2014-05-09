@@ -125,13 +125,28 @@
     // configure the output function
     // call Sk.importMainWithBody()
     function runit() { 
-       var prog = editor.getSession().getValue(); 
-       var mypre = document.getElementById("output"); 
-       mypre.innerHTML = ''; 
-       Sk.canvas = "mycanvas";
-       Sk.pre = "output";
-       Sk.configure({output:outf, read:builtinRead}); 
-       eval(Sk.importMainWithBody("<stdin>",false,prog)); 
+      var prog = editor.getSession().getValue(); 
+      var mypre = document.getElementById("output"); 
+      mypre.innerHTML = ''; 
+      Sk.canvas = "mycanvas";
+      Sk.pre = "output";
+      Sk.configure({output:outf, read:builtinRead}); 
+      eval(Sk.importMainWithBody("<stdin>",false,prog)); 
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function()
+        {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200)
+          {
+            document.getElementById("editor").innerHTML="Done";
+          }
+          else if (xmlhttp.status==404)
+          {
+            document.getElementById("editor").innerHTML="Error.";
+          }
+        }
+        xmlhttp.open("POST","backend.py",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send("pick=1&code="+editor.getSession().getValue());
     } 
   </script> 
  
