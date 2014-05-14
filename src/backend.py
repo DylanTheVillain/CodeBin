@@ -8,7 +8,8 @@ import time
 import hashlib
 from random import randrange
 
-print "Content-Type: text/html\n"
+print "Content-Type: text/plain\n"
+
 try:
 	con=db.connect('localhost','johnsondy','password','johnsondy')
 	cur=con.cursor()
@@ -36,6 +37,18 @@ def GenFileName():
 			cur.execute("INSERT INTO filetable (source,filename,filehash,lastaccess) VALUES (%s,%s,%s,%s)",(str(form['code'].value),fiName,tsHash,ts))
 			con.commit()
 			break
+	return fiName
 
 if (int(form['pick'].value)==1):
-	GenFileName()
+	cur.execute("SELECT source FROM filetable WHERE filename=%s",(str(form['hash'].value)))
+	con.commit()
+	print str(cur.fetchall())[3:-5]
+
+elif (int(form['pick'].value)==2):
+	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s",(str(form['code'].value),str(form['hash'].value)))
+	con.commit()
+
+elif (int(form['pick'].value)==3):
+	fiName=GenFileName()
+	print fiName
+	

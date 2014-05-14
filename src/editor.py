@@ -1,3 +1,11 @@
+import cgi
+
+print "Content-Type: text/html\n"
+
+form = cgi.FieldStorage()
+
+
+print """
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,25 +94,37 @@
         var rickroll = new Sound("bin/mp3/rickroll.mp3",100,true);
         rickroll.start();
       }
-
-      //Skeleton for loading the python code from a .txt file
-      function LoadPython() {
-        xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange=function() {
-          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-            document.getElementById("editor").innerHTML=xmlhttp.responseText;
-          }
-          else if (xmlhttp.status==404) {
-            document.getElementById("editor").innerHTML="Error.";
-          }
-        }
-        xmlhttp.open("GET","backend.py",true);
-        xmlhttp.send();
-      }
+  function loadtext()
+  {
+"""
+try:
+  print """
+  alert("saaaaaaaaaaa");
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    
+      editor.getSession().setValue(xmlhttp.responseText);
+    }
+    else if (xmlhttp.status==404)
+    {
+      editor.getSession().setValue('An error occured.');
+    }
+  }
+  xmlhttp.open("POST","backend.py",true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("pick=1&hash="+'%s');
+  """%(str(form['hash'].value))
+except:
+  print """editor.getSession().setValue('print \"Hello World\"');"""
+print """
+}
     </script> 
 </head>
 
-<body>
+<body onload="loadtext()">
 
   <script type="text/javascript"> 
     // output functions are configurable.  This one just appends some text
@@ -125,29 +145,48 @@
     // configure the output function
     // call Sk.importMainWithBody()
     function runit() { 
-      var prog = editor.getSession().getValue(); 
-      var mypre = document.getElementById("output"); 
-      mypre.innerHTML = ''; 
-      Sk.canvas = "mycanvas";
-      Sk.pre = "output";
-      Sk.configure({output:outf, read:builtinRead}); 
-      eval(Sk.importMainWithBody("<stdin>",false,prog)); 
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function()
+  	var prog = editor.getSession().getValue(); 
+  	var mypre = document.getElementById("output"); 
+   	mypre.innerHTML = ''; 
+  	Sk.canvas = "mycanvas";
+  	Sk.pre = "output";
+  	Sk.configure({output:outf, read:builtinRead}); 
+  	eval(Sk.importMainWithBody("<stdin>",false,prog));   
+  } 
+    function savetext()
+    {
+	    var xmlhttp=new XMLHttpRequest();
+	    
+"""
+try:
+	print """
+  alert("asdfasdfasdf");
+  xmlhttp.open("POST","backend.py",true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash="+'%s');
+  """%(str(form['hash'].value))
+except:
+	print """
+  var newHash="";
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      newHash=xmlhttp.responseText;  
+      window.location=document.URL+"?hash="+newHash;
+    }
+      else if (xmlhttp.status==404)
       {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-          editor.getSession().setValue(xmlhttp.responseText);
-        }
-        else if (xmlhttp.status==404)
-        {
-          editor.getSession().setValue("An error occured.");
-        }
+        editor.getSession().setValue("An error occured.");
       }
-      xmlhttp.open("POST","backend.py",true);
-      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      xmlhttp.send("pick=1&code="+editor.getSession().getValue());
-    } 
+  }
+
+  xmlhttp.open("POST","backend.py",true);
+  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("pick=3&code="+editor.getSession().getValue());
+	"""
+print """
+    }
   </script> 
  
 
@@ -158,11 +197,11 @@
 
   <div id="body-content">
       <form id="body-form">  
-        <div id="editor">print "Hello World!"</div>
+        <div id="editor"></div>
         <div id="output">
           <canvas id="mycanvas" ></mycanvas> 
         </div>
-        <button id="run-button" type="button" onclick="runit()">Run</button> 
+        <button id="run-button" type="button" onclick="runit(); savetext();">Run</button> 
       </form>  
   </div>
 
@@ -181,3 +220,4 @@
 </body>
 
 </html>
+"""
