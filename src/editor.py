@@ -156,40 +156,36 @@ print """
     function savetext()
     {
 	    var xmlhttp=new XMLHttpRequest();
-	    
 """
 try:
 	print """
-  alert("asdfasdfasdf");
-  xmlhttp.open("POST","backend.py",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash="+'%s');
+      alert("asdfasdfasdf");
+      xmlhttp.open("POST","backend.py",true);
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash="+'%s');
   """%(str(form['hash'].value))
 except:
 	print """
-  var newHash="";
-  xmlhttp.onreadystatechange=function()
-  {
-    if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-      newHash=xmlhttp.responseText;  
-      window.location=document.URL+"?hash="+newHash;
-    }
-      else if (xmlhttp.status==404)
+      var newHash="";
+      xmlhttp.onreadystatechange=function()
       {
-        editor.getSession().setValue("An error occured.");
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+          newHash=xmlhttp.responseText;  
+          window.location=document.URL+"?hash="+newHash;
+        }
+        else if (xmlhttp.status==404)
+        {
+          editor.getSession().setValue("An error occured.");
+        }
       }
-  }
-
-  xmlhttp.open("POST","backend.py",true);
-  xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xmlhttp.send("pick=3&code="+editor.getSession().getValue());
+      xmlhttp.open("POST","backend.py",true);
+      xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    	xmlhttp.send("pick=3&code="+editor.getSession().getValue());
 	"""
 print """
     }
   </script> 
- 
-
   <div id="header-content">
     <a class="easter-egg" href="#" onclick="startRickRoll()"><h1 id="logo">CodeBin</h1></a>
 
@@ -201,7 +197,7 @@ print """
         <div id="output">
           <canvas id="mycanvas" ></mycanvas> 
         </div>
-        <button id="run-button" type="button" onclick="runit(); savetext();">Run</button> 
+        <button id="run-button" type="button" onclick="savetext(); runit();">Run</button> 
       </form>  
   </div>
 
