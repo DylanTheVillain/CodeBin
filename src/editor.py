@@ -105,7 +105,13 @@ try:
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
       var text=xmlhttp.responseText;
-      alert(text);
+      var textArray=text.split("\\r\\n");
+      text="";
+      for (var x=0;x<textArray.length;x++)
+      {
+        text+=textArray[x];
+        text+="\\n";
+      }
       editor.getSession().setValue(text);
     }
     else if (xmlhttp.status==404)
@@ -159,7 +165,6 @@ print """
 """
 try:
 	print """
-      alert(editor.getSession().getValue());
       xmlhttp.open("POST","backend.py",true);
       xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash=%s");
