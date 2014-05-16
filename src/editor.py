@@ -159,6 +159,7 @@ print """
 """
 try:
 	print """
+      alert(editor.getSession().getValue());
       xmlhttp.open("POST","backend.py",true);
       xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash=%s");

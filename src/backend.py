@@ -42,7 +42,10 @@ def GenFileName():
 if (int(form['pick'].value)==1):
 	cur.execute("SELECT source FROM filetable WHERE filename=%s",(str(form['hash'].value)))
 	con.commit()
-	print str(cur.fetchall())[3:-5]
+	code=str(cur.fetchall())[3:-5]
+	codeArray=code.split("\\n")
+	for string in codeArray:
+		print string
 
 elif (int(form['pick'].value)==2):
 	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s AND 1",(str(form['code'].value),str(form['hash'].value)))
@@ -50,6 +53,7 @@ elif (int(form['pick'].value)==2):
 	print form['code'].value
 
 elif (int(form['pick'].value)==3):
+	print form['code'].value
 	fiName=GenFileName()
 	print fiName
 	
