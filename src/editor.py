@@ -202,7 +202,7 @@ print """
   </div>
 
   <div id="footer-content">
-    <p>CodeBin Copyright 2014 Written By <a class="easter-egg" href="http://bit.ly/1eUpyT1">Alex Jaeger</a> and <a class="easter-egg" href="http://bit.ly/ISHK7f">Dylan Johnson</a>. Documentation and Support provided by the <a class="easter-egg" href="./bin/img/california-condor.jpg">Condor</a></p>
+    <p>CodeBin Copyright 2014 Written By <a class="easter-egg" href="http://bit.ly/1eUpyT1">Alex Jaeger</a> and <a class="easter-egg" href="./bin/img/cat.jpg">Dylan Johnson</a>. Documentation and Support provided by the <a class="easter-egg" href="./bin/img/california-condor.jpg">Condor</a></p>
   </div>
 
   <script src="./bin/libraries/ace-builds-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
