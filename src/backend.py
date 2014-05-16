@@ -45,8 +45,9 @@ if (int(form['pick'].value)==1):
 	print str(cur.fetchall())[3:-5]
 
 elif (int(form['pick'].value)==2):
-	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s",(str(form['code'].value),str(form['hash'].value)))
+	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s AND 1",(str(form['code'].value),str(form['hash'].value)))
 	con.commit()
+	print form['code'].value
 
 elif (int(form['pick'].value)==3):
 	fiName=GenFileName()

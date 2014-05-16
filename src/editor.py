@@ -99,7 +99,6 @@ print """
 """
 try:
   print """
-  alert("saaaaaaaaaaa");
   var xmlhttp=new XMLHttpRequest();
   xmlhttp.onreadystatechange=function()
   {
@@ -159,11 +158,11 @@ print """
 """
 try:
 	print """
-      alert("asdfasdfasdf");
       xmlhttp.open("POST","backend.py",true);
       xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash="+'%s');
+      xmlhttp.send("pick=2&code="+editor.getSession().getValue()+"&hash=%s");
   """%(str(form['hash'].value))
+
 except:
 	print """
       var newHash="";
