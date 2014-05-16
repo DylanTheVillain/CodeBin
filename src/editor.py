@@ -104,8 +104,9 @@ try:
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-    
-      editor.getSession().setValue(xmlhttp.responseText);
+      var text=xmlhttp.responseText;
+      alert(text);
+      editor.getSession().setValue(text);
     }
     else if (xmlhttp.status==404)
     {
