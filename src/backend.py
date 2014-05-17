@@ -53,7 +53,6 @@ elif (int(form['pick'].value)==2):
 	print form['code'].value
 
 elif (int(form['pick'].value)==3):
-	print form['code'].value
 	fiName=GenFileName()
 	print fiName
 	
