@@ -39,6 +39,25 @@ def GenFileName():
 			break
 	return fiName
 
+#Use this method if we need to delete projects that are older than a certain date.
+def RemoveDeadProjects():
+	ti=time.time()
+	ts=datetime.datetime.fromtimestamp(ti)
+	cur.execute("SELECT lastaccess FROM filetable")
+	con.commit()
+	loggedTime=cur.fetchall()
+	for timestamp in loggedTime:
+		diff=ts-timestamp[0]
+		if (diff.days>31):#How old the projects are before they are deleted.
+			cur.execute("DELETE FROM filetable WHERE lastaccess=%s LIMIT 1",(timestamp[0].strftime('%Y-%m-%d %H:%M:%S')))
+			con.commit()
+
+def UpdateLastAccess():
+	ti=time.time()
+	ts=datetime.datetime.fromtimestamp(ti).strftime('%Y-%m-%d %H:%M:%S')
+	cur.execute("UPDATE filetable SET lastaccess=%s WHERE filename=%s",(str(ts),str(form['hash'].value)))
+	con.commit()
+
 if (int(form['pick'].value)==1):
 	cur.execute("SELECT source FROM filetable WHERE filename=%s",(str(form['hash'].value)))
 	con.commit()
@@ -46,11 +65,12 @@ if (int(form['pick'].value)==1):
 	codeArray=code.split("\\n")
 	for string in codeArray:
 		print string
+	UpdateLastAccess()
 
 elif (int(form['pick'].value)==2):
-	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s AND 1",(str(form['code'].value),str(form['hash'].value)))
+	cur.execute("UPDATE filetable SET source=%s WHERE filename=%s",(str(form['code'].value),str(form['hash'].value)))
 	con.commit()
-	print form['code'].value
+	UpdateLastAccess()
 
 elif (int(form['pick'].value)==3):
 	fiName=GenFileName()
