@@ -193,7 +193,7 @@ print """
     }
   </script> 
   <div id="header-content">
-    <a class="easter-egg" href="#" onclick="startRickRoll()"><h1 id="logo">CodeBin</h1></a>
+    <a class="easter-egg" href="#" onclick="startRickRoll()"><h1 id="logo">CodeBin  (This site is pretty ghetto.  Use at your own risk.)</h1></a>
 
   </div>
 
