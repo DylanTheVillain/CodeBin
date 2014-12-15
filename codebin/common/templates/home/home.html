@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <div id = "navigationdiv">
+            <ul>
+                <li>
+                    <a href = "{% url 'common.helpers.home.Index' %}">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href = "{% url 'editor:index' %}">
+                        Create New Project
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id = "mainbody">
+            {% block body %}
+                Put stuff here!
+            {% endblock %}
+        </div>
+    </body>
+</html>
