@@ -1,12 +1,6 @@
 CodeBin
 =======
 
-CodeBin - an online IDE and compiler with a file server attached
+An online python ide that is implemented using Skulpt and Ace.
 
-
-## Running Locally
-
-Just copy the src folder and extract all the files into a webroot
-
-## License
-Copyright © 2014, Alex Jaeger, Dylan Johnson, and Connor Taffe. See the LICENSE file for license rights and limitations (Apache v2.0).
+It is currently being rewritten using Django.
