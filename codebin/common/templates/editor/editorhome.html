@@ -1,7 +1,20 @@
 {% extends "home/home.html" %}
 
 {% block body %}
-    <div id = "aceeditor">
+    <div id = "editordiv">
+        <div id = "editor">
+            function foo(input)
+            {
+                alert(input);
+                var x = input + input;
+                return x;
+            }
+        </div>
+        <script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/monokai");
+            editor.getSession().setMode("ace/mode/python");
+        </script>
     </div>
     <div id = "output">
     </div>
