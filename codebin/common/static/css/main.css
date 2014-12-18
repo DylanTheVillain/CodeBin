@@ -1,8 +1,17 @@
+#output, #mycanvas
+{
+	float: right;
+	display: block;
+}
+#mycanvas
+{
+	background-color: rgb(230, 230, 230);
+}
 #editor
 {
 	position: absolute;
 	top: 50px;
 	bottom: 150px;
 	left: 50px;
-	right: 800px;
+	width: 500px;
 }

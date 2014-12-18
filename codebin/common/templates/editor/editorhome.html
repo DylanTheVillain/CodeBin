@@ -1,21 +1,48 @@
 {% extends "home/home.html" %}
 
 {% block body %}
-    <div id = "editordiv">
-        <div id = "editor">
-            function foo(input)
+    <script type = "text/javascript">
+        function outf(text)
+        {
+            document.getElementById("output").innerHTML += text;
+        }
+        function builtinRead(x)
+        {
+            if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
             {
-                alert(input);
-                var x = input + input;
-                return x;
+                throw "File not found: '" + x + "'";
             }
-        </div>
+            return Sk.builtinFiles["files"][x];
+        }
+        function runit()
+        {
+            var program = editor.getSession().getValue();
+            var output = document.getElementById("output")
+            output.innerHTML = '';
+            Sk.canvas = "mycanvas";
+            Sk.pre = "output";
+            Sk.configure({output:outf, read:builtinRead});
+            try
+            {
+                eval(Sk.importMainWithBody("<stdin>", false, program));
+            }
+            catch(e)
+            {
+                alert(e.toString())
+            }
+        }
+    </script>
+    <form>
+        <button type = "button" onclick = "runit()">
+            Run
+        </button>
+        <div id = "editor"></div>
+        <div id = "output"></div>
+        <canvas id = "mycanvas"></mycanvas>
         <script>
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.getSession().setMode("ace/mode/python");
         </script>
-    </div>
-    <div id = "output">
-    </div>
+    </form>
 {% endblock %}
