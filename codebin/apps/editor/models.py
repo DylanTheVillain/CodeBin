@@ -1,3 +1,12 @@
 from django.db import models
 
-# Create your models here.
+class Project(models.Model):
+	projectCode = models.TextField()
+	projectCreationDate = models.DateTimeField(auto_now_add = True)
+	projectLastUpdate = models.DateTimeField(auto_now = True)
+	projectHash = models.CharField(max_length = 40)
+
+class Forked(models.Model):
+	forkedParentHash = models.CharField(max_length = 40)
+	forkedHash = models.CharField(max_length = 40)
+	forkedDate = models.DateTimeField(auto_now_add = 40)
