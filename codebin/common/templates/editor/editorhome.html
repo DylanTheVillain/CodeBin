@@ -1,4 +1,5 @@
 {% extends "home/home.html" %}
+{% load htmltags %}
 
 {% block body %}
     <script type = "text/javascript">
@@ -43,7 +44,7 @@
             var editor = ace.edit("editor");
             editor.setTheme("ace/theme/monokai");
             editor.getSession().setMode("ace/mode/python");
-            editor.insert("{{ projectdata.projectCode }}");
+            editor.insert("{% html_decode projectdata.projectCode %}");
         </script>
     </form>
 {% endblock %}

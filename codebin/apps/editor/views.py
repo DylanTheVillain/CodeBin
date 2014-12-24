@@ -6,15 +6,14 @@ from common.helpers import hashtool
 import time
 
 def Index(request):
-	# try:
-	project = Project.objects.get(projectHash = request.GET['projecthash'])
-	project.projectCode = "Hello"
-	htmldata = {
-		'projectdata':project
-	}
-	return render(request, 'editor/editorhome.html', htmldata)
-	# except:
-	# 	return HttpResponseRedirect(reverse("apps.home.home.Index"))
+	try:
+		project = Project.objects.get(projectHash = request.GET['projecthash'])
+		htmldata = {
+			'projectdata':project
+		}
+		return render(request, 'editor/editorhome.html', htmldata)
+	except:
+		return HttpResponseRedirect(reverse("apps.home.home.Index"))
 
 def GenerateNewProject(request):
 	timeStamp = time.time()
