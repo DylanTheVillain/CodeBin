@@ -1,10 +1,9 @@
 <html>
     <head>
-        {% load staticfiles %}
-        <link rel = "stylesheet" href = "{% static 'css/main.css' %}" type = "text/css"/>
-        <script src = "{% static 'javascript/ace/ace.js' %}" type = "text/javascript" charset = "utf-8"></script>
-        <script src = "{% static 'javascript/skulpt/skulpt.min.js' %}" type = "text/javascript"></script>
-        <script src = "{% static 'javascript/skulpt/skulpt-stdlib.js' %}" type = "text/javascript"></script>
+        {% block staticfiles %}
+            {% load staticfiles %}
+            <link rel = "stylesheet" href = "{% static 'css/home.css' %}" type = "text/css"/>
+        {% endblock %}
     </head>
     <body>
         <div id = "navigationdiv">
