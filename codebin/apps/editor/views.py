@@ -8,8 +8,15 @@ import time
 def Index(request):
 	try:
 		project = Project.objects.get(projectHash = request.GET['projecthash'])
+		forks = Forked.objects.filter(forkedParentHash = request.GET['projecthash'])
+		try:
+			parent = Forked.objects.get(forkedHash = request.GET['projecthash']).forkedParentHash
+		except:
+			parent = ""
 		htmldata = {
-			'projectdata':project
+			'projectdata':project,
+			'forks':forks,
+			'parent':parent
 		}
 		return render(request, 'editor/editorhome.html', htmldata)
 	except:

@@ -38,6 +38,32 @@
 {% endblock %}
 
 {% block body %}
+    <div id = "forks">
+        <ul>
+            <li>
+                <h3>
+                    Forks
+                </h3>
+                <ul>
+                    {% for fork in forks %}
+                    <li>
+                        <a href = "{% url 'editor:index' %}?projecthash={{ fork.forkedHash }}">
+                            {{ fork.forkedHash }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <h3>
+                    Forked From
+                </h3>
+                <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
+                    {{ parent }}
+                </a>
+            </li>
+        </ul>
+    </div>
     <button type = "button" onclick = "runit()" class = "controlbuttons">
         Run
     </button>
