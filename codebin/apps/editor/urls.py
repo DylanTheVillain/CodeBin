@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 	url(r'^newproject/$', views.GenerateNewProject, name = 'newproject'),
 	url(r'^savecode/$', views.SaveCode, name = 'savecode'),
 	url(r'^fork/$', views.Fork, name = 'fork'),
+	url(r'^alterpublicprivate/$', views.AlterPublicPrivate, name = 'alterpublicprivate')
 )

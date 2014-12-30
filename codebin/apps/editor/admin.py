@@ -1,3 +1,5 @@
 from django.contrib import admin
+from apps.editor.models import Project, Forked
 
-# Register your models here.
+admin.site.register(Project)
+admin.site.register(Forked)

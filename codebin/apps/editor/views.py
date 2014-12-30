@@ -9,14 +9,17 @@ def Index(request):
 	try:
 		project = Project.objects.get(projectHash = request.GET['projecthash'])
 		forks = Forked.objects.filter(forkedParentHash = request.GET['projecthash'])
+		forks = [fork for fork in forks if Project.objects.get(projectHash = fork.forkedHash).projectPublic == True]
 		try:
 			parent = Forked.objects.get(forkedHash = request.GET['projecthash']).forkedParentHash
 		except:
 			parent = ""
+		option = "Make Private" if project.projectPublic == True else "Make Public"
 		htmldata = {
 			'projectdata':project,
 			'forks':forks,
-			'parent':parent
+			'parent':parent,
+			'option':option
 		}
 		return render(request, 'editor/editorhome.html', htmldata)
 	except:
@@ -69,3 +72,10 @@ def Fork(request):
 		response = "An error occured."
 	finally:
 		return HttpResponse(response)
+
+def AlterPublicPrivate(request):
+	project = Project.objects.get(projectHash = request.POST['projecthash'])
+	project.projectPublic = not project.projectPublic
+	project.save()
+	response = "Make Private" if project.projectPublic == True else "Make Public"
+	return HttpResponse(response)

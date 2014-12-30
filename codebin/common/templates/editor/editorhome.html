@@ -34,6 +34,17 @@
             var url = "{% url 'editor:fork' %}";
             SendAjaxRequest(func, true, url, headers, message);
         }
+        function AlterPublicPrivate()
+        {
+            func = function(ajaxresponse)
+            {
+                document.getElementById("alterpublicprivate").innerHTML = ajaxresponse;
+            }
+            var message = "projecthash={{projectdata.projectHash}}";
+            var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
+            var url = "{% url 'editor:alterpublicprivate' %}";
+            SendAjaxRequest(func, true, url, headers, message);
+        }
     </script>
 {% endblock %}
 
@@ -72,6 +83,9 @@
     </button>
     <button type = "button" onclick = "Fork()" class = "controlbuttons">
         Fork
+    </button>
+    <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
+        {{ option }}
     </button>
     <div id = "editor"></div>
     <pre id = "console"></pre>
