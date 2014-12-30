@@ -38,6 +38,27 @@ def SaveCode(request):
 		project.save()
 		response = "The code was saved."
 	except:
-		response = "An error occured, the code was not saved."
+		response = "An error occured."
+	finally:
+		return HttpResponse(response)
+
+def Fork(request):
+	try:
+		timeStamp = time.time()
+		timeStamp = str(timeStamp)
+		newHash = hashtool.GetHash(timeStamp)
+		baseProject = Project.objects.get(projectHash = request.POST['projecthash'])
+		newProject = Project()
+		newFork = Forked()
+		newProject.projectCode = baseProject.projectCode
+		newProject.projectHash = newHash
+		newProject.projectPublic = baseProject.projectPublic
+		newFork.forkedParentHash = baseProject.projectHash
+		newFork.forkedHash = newHash
+		newProject.save()
+		newFork.save()
+		response = "The code was forked."
+	except:
+		response = "An error occured."
 	finally:
 		return HttpResponse(response)

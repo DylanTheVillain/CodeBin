@@ -5,6 +5,7 @@ class Project(models.Model):
 	projectCreationDate = models.DateTimeField(auto_now_add = True)
 	projectLastUpdate = models.DateTimeField(auto_now = True)
 	projectHash = models.CharField(max_length = 40)
+	projectPublic = models.BooleanField(default = True)
 
 class Forked(models.Model):
 	forkedParentHash = models.CharField(max_length = 40)

@@ -10,18 +10,30 @@
     <script src = "{% static 'javascript/editor/editor.js' %}" type = "text/javascript"></script>
     <script src = "{% static 'javascript/editor/acefunctions.js' %}" type = "text/javascript"></script>
     <script type = "text/javascript">
-    function SaveCode()
-    {
-        var code = editor.getSession().getValue();
-        code = encodeURIComponent(code);
-        var message = "projecthash={{projectdata.projectHash}}&code=" + code;
-        func = function(ajaxresponse)
+        function SaveCode()
         {
-            document.getElementById("console").innerHTML = ajaxresponse;
+            var code = editor.getSession().getValue();
+            code = encodeURIComponent(code);
+            var message = "projecthash={{projectdata.projectHash}}&code=" + code;
+            func = function(ajaxresponse)
+            {
+                document.getElementById("console").innerHTML += ajaxresponse;
+            }
+            var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
+            var url = "{% url 'editor:savecode' %}"
+            SendAjaxRequest(func, true, url, headers, message);
         }
-        var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
-        SendAjaxRequest(func, true, "{% url 'editor:savecode' %}", headers, message);
-    }
+        function Fork()
+        {
+            func = function(ajaxresponse)
+            {
+                document.getElementById("console").innerHTML += ajaxresponse;
+            }
+            var message = "projecthash={{projectdata.projectHash}}";
+            var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
+            var url = "{% url 'editor:fork' %}";
+            SendAjaxRequest(func, true, url, headers, message);
+        }
     </script>
 {% endblock %}
 
@@ -31,6 +43,9 @@
     </button>
     <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
         Save
+    </button>
+    <button type = "button" onclick = "Fork()" class = "controlbuttons">
+        Fork
     </button>
     <div id = "editor"></div>
     <pre id = "console"></pre>
