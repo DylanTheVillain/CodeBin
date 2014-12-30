@@ -1,4 +1,9 @@
-#output, #mycanvas
+button.controlbuttons
+{
+	display: block;
+	margin-bottom: 5px;
+}
+#output, #mycanvas, #console
 {
 	float: right;
 	display: block;

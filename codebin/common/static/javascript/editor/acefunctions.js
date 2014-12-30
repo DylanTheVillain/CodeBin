@@ -19,11 +19,11 @@ function runit()
 	Sk.pre = "output";
 	Sk.configure({output:outf, read:builtinRead});
 	try
-{
-	eval(Sk.importMainWithBody("<stdin>", false, program));
-}
-catch(e)
-{
-	alert(e.toString())
-}
+	{
+		eval(Sk.importMainWithBody("<stdin>", false, program));
+	}
+	catch(e)
+	{
+		alert(e.toString())
+	}
 }

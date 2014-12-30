@@ -1,9 +1,4 @@
-function SaveCode()
-{
-
-}
-
-function SendAjaxRequest(resultControl, isAsync, destination, message)
+function SendAjaxRequest(resultControl, isAsync, destination, headers, message)
 {
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function()
@@ -18,6 +13,9 @@ function SendAjaxRequest(resultControl, isAsync, destination, message)
 		}
 	}
 	xmlHttp.open("POST", destination, isAsync);
-	xmlHttp.setRequestHeader("Content-Type", "applicaiton/x-www-form-urlencoded");
+	for (var index = 0; index < headers.length; index++)
+	{
+		xmlHttp.setRequestHeader(headers[index][0], headers[index][1]);
+	}
 	xmlHttp.send(message);
 }
