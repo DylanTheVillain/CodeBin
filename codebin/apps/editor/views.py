@@ -4,12 +4,11 @@ from django.core.urlresolvers import reverse
 from apps.editor.models import Project, Forked
 from common.helpers import hashtool
 import time
+import json
 
 def Index(request):
 	try:
 		project = Project.objects.get(projectHash = request.GET['projecthash'])
-		forks = Forked.objects.filter(forkedParentHash = request.GET['projecthash'])
-		forks = [fork for fork in forks if Project.objects.get(projectHash = fork.forkedHash).projectPublic == True]
 		try:
 			parent = Forked.objects.get(forkedHash = request.GET['projecthash']).forkedParentHash
 		except:
@@ -17,7 +16,6 @@ def Index(request):
 		option = "Make Private" if project.projectPublic == True else "Make Public"
 		htmldata = {
 			'projectdata':project,
-			'forks':forks,
 			'parent':parent,
 			'option':option
 		}

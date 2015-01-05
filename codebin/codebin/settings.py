@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'apps.editor',
     'apps.home',
+    'apps.browse',
     'common',
 )
 

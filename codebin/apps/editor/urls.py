@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from apps.editor import views
 
 urlpatterns = patterns('',
@@ -7,5 +6,5 @@ urlpatterns = patterns('',
 	url(r'^newproject/$', views.GenerateNewProject, name = 'newproject'),
 	url(r'^savecode/$', views.SaveCode, name = 'savecode'),
 	url(r'^fork/$', views.Fork, name = 'fork'),
-	url(r'^alterpublicprivate/$', views.AlterPublicPrivate, name = 'alterpublicprivate')
+	url(r'^alterpublicprivate/$', views.AlterPublicPrivate, name = 'alterpublicprivate'),
 )
