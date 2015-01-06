@@ -1,7 +1,6 @@
 from database.project.models import Project, Forked
 from common.helpers import hashtool
 import time
-import json
 
 def GetPublicProjects():
 	projects = Project.objects.filter(projectPublic = True)
