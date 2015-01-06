@@ -24,12 +24,12 @@ def Index(request):
 
 def GetNewProject(request):
 	projectHash = interface.GenerateNewProject()
-	try:
+	if projectHash is not None:
 		url = reverse('editor:index')
 		url += "?projecthash="
 		url += projectHash
 		return HttpResponseRedirect(url)
-	except:
+	else:
 		return HttpResponseRedirect(reverse('apps.home.home.Index'))
 
 def Fork(request):
