@@ -11,6 +11,20 @@ def GetForks(forkedParentHash):
 	forks = Forked.objects.filter(forkedParentHash = forkedParentHash)
 	return forks
 
+def GetProjectFromHash(projectHash):
+	try:
+		project = Project.objects.get(projectHash = projectHash)
+		return project
+	except:
+		return None
+
+def GetForkFromHash(forkHash):
+	try:
+		fork = Forked.objects.get(forkedHash = forkHash)
+		return fork
+	except:
+		return None
+
 def GenerateNewProject():
 	timeStamp = time.time()
 	timeStamp = str(timeStamp)

@@ -2,19 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from database.project import interface
-from database.project.models import Project, Forked
 
 def Index(request):
 	try:
-		project = Project.objects.get(projectHash = request.GET['projecthash'])
-		try:
-			parent = Forked.objects.get(forkedHash = request.GET['projecthash']).forkedParentHash
-		except:
-			parent = ""
+		project = interface.GetProjectFromHash(request.GET['projecthash'])
+		if project is None:
+			raise TypeError
+		projectForkedObject = interface.GetForkFromHash(request.GET['projecthash'])
+		forkedParentHash = ""
+		if projectForkedObject is not None:
+			forkedParentHash = projectForkedObject.forkedParentHash
 		option = "Make Private" if project.projectPublic else "Make Public"
 		htmldata = {
 			'projectdata':project,
-			'parent':parent,
+			'parent':forkedParentHash,
 			'option':option
 		}
 		return render(request, 'editor/editorhome.html', htmldata)
