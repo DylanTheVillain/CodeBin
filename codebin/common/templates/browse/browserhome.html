@@ -7,5 +7,17 @@
 {% endblock %}
 
 {% block body %}
-	All
+	<div id = "projects">
+		<ul>
+			{% for project in projects %}
+				<li>
+					<a href = "{% url 'editor:index' %}?projecthash={{ project.projectHash }}" target = "_blank">
+						{{ project.projectName }}
+						</br>
+						{{ project.projectHash }}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 {% endblock %}

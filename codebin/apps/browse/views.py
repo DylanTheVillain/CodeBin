@@ -1,17 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from apps.editor.models import Project, Forked
+from database.project import interface
 
 def Index(request):
-	projects = Project.objects.filter(projectPublic = True)
+	projects = interface.GetPublicProjects()
 	htmldata = {
 		'projects':projects
 	}
 	return render(request, 'browse/browserhome.html', htmldata)
-
-def GetPublicProjects(request):
-	projects = Project.objects.filter(projectPublic = True)
-	return projects
-
-def GetForks(request):
-	return HttpResponse("Forks")

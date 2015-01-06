@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
-from apps.editor.models import Project, Forked
-from common.helpers import hashtool
-import time
-import json
+from database.project import interface
+from database.project.models import Project, Forked
 
 def Index(request):
 	try:
@@ -13,7 +11,7 @@ def Index(request):
 			parent = Forked.objects.get(forkedHash = request.GET['projecthash']).forkedParentHash
 		except:
 			parent = ""
-		option = "Make Private" if project.projectPublic == True else "Make Public"
+		option = "Make Private" if project.projectPublic else "Make Public"
 		htmldata = {
 			'projectdata':project,
 			'parent':parent,
@@ -23,57 +21,27 @@ def Index(request):
 	except:
 		return HttpResponseRedirect(reverse("apps.home.home.Index"))
 
-def GenerateNewProject(request):
-	timeStamp = time.time()
-	timeStamp = str(timeStamp)
-	projectHash = hashtool.GetHash(timeStamp)
+def GetNewProject(request):
+	projectHash = interface.GenerateNewProject()
 	try:
-		newProject = Project()
-		newProject.projectCode = "print \"Hello World\""
-		newProject.projectHash = projectHash
-		newProject.save()
-		url = reverse("editor:index")
+		url = reverse('editor:index')
 		url += "?projecthash="
 		url += projectHash
 		return HttpResponseRedirect(url)
 	except:
-		return HttpResponseRedirect(reverse("apps.home.home.Index"))
-
-def SaveCode(request):
-	try:
-		project = Project.objects.get(projectHash = request.POST['projecthash'])
-		project.projectCode = request.POST['code']
-		project.save()
-		response = "The code was saved."
-	except:
-		response = "An error occured."
-	finally:
-		return HttpResponse(response)
+		return HttpResponseRedirect(reverse('apps.home.home.Index'))
 
 def Fork(request):
-	try:
-		timeStamp = time.time()
-		timeStamp = str(timeStamp)
-		newHash = hashtool.GetHash(timeStamp)
-		baseProject = Project.objects.get(projectHash = request.POST['projecthash'])
-		newProject = Project()
-		newFork = Forked()
-		newProject.projectCode = baseProject.projectCode
-		newProject.projectHash = newHash
-		newProject.projectPublic = baseProject.projectPublic
-		newFork.forkedParentHash = baseProject.projectHash
-		newFork.forkedHash = newHash
-		newProject.save()
-		newFork.save()
-		response = "The code was forked."
-	except:
-		response = "An error occured."
-	finally:
-		return HttpResponse(response)
+	result = interface.Fork(request.POST['projecthash'])
+	returnString = "The code was forked." if result else "An error occured."
+	return HttpResponse(returnString)
+
+def SaveCode(request):
+	result = interface.SaveCode(request.POST['projecthash'], request.POST['code'])
+	returnString = "The code was saved." if result else "An error occured."
+	return HttpResponse(returnString)
 
 def AlterPublicPrivate(request):
-	project = Project.objects.get(projectHash = request.POST['projecthash'])
-	project.projectPublic = not project.projectPublic
-	project.save()
-	response = "Make Private" if project.projectPublic == True else "Make Public"
-	return HttpResponse(response)
+	result = interface.AlterPublicPrivate(request.POST['projecthash'])
+	returnString = "Make Private" if result else "Make Public"
+	return HttpResponse(returnString)

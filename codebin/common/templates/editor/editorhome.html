@@ -14,7 +14,7 @@
         {
             var code = editor.getSession().getValue();
             code = encodeURIComponent(code);
-            var message = "projecthash={{projectdata.projectHash}}&code=" + code;
+            var message = "projecthash={{ projectdata.projectHash }}&code=" + code;
             func = function(ajaxresponse)
             {
                 document.getElementById("console").innerHTML += ajaxresponse;
@@ -29,7 +29,7 @@
             {
                 document.getElementById("console").innerHTML += ajaxresponse;
             }
-            var message = "projecthash={{projectdata.projectHash}}";
+            var message = "projecthash={{ projectdata.projectHash }}";
             var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
             var url = "{% url 'editor:fork' %}";
             SendAjaxRequest(func, true, url, headers, message);
@@ -40,7 +40,7 @@
             {
                 document.getElementById("alterpublicprivate").innerHTML = ajaxresponse;
             }
-            var message = "projecthash={{projectdata.projectHash}}";
+            var message = "projecthash={{ projectdata.projectHash }}";
             var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
             var url = "{% url 'editor:alterpublicprivate' %}";
             SendAjaxRequest(func, true, url, headers, message);

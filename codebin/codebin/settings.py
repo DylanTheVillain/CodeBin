@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'apps.editor',
     'apps.home',
     'apps.browse',
+    'database.project',
     'common',
 )
 
