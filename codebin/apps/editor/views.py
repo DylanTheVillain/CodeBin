@@ -9,9 +9,7 @@ def Index(request):
 		if project is None:
 			raise TypeError
 		projectForkedObject = interface.GetForkFromHash(request.GET['projecthash'])
-		forkedParentHash = ""
-		if projectForkedObject is not None:
-			forkedParentHash = projectForkedObject.forkedParentHash
+		forkedParentHash = projectForkedObject.forkedParentHash if projectForkedObject is not None else ""
 		option = "Make Private" if project.projectPublic else "Make Public"
 		htmldata = {
 			'projectdata':project,
@@ -45,4 +43,9 @@ def SaveCode(request):
 def AlterPublicPrivate(request):
 	result = interface.AlterPublicPrivate(request.POST['projecthash'])
 	returnString = "Make Private" if result else "Make Public"
+	return HttpResponse(returnString)
+
+def AlterName(request):
+	result = interface.ChangeName(request.POST['projecthash'], request.POST['name'])
+	returnString = "The name was changed." if result is True else "An error occured."
 	return HttpResponse(returnString)

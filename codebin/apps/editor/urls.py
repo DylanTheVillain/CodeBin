@@ -7,4 +7,5 @@ urlpatterns = patterns('',
 	url(r'^savecode/$', views.SaveCode, name = 'savecode'),
 	url(r'^fork/$', views.Fork, name = 'fork'),
 	url(r'^alterpublicprivate/$', views.AlterPublicPrivate, name = 'alterpublicprivate'),
+	url(r'^altername/$', views.AlterName, name = 'altername')
 )

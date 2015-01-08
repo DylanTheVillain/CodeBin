@@ -73,3 +73,14 @@ def AlterPublicPrivate(projectHash):
 		return project.projectPublic
 	except:
 		return None
+
+def ChangeName(projectHash, newName):
+	try:
+		project = GetProjectFromHash(projectHash)
+		if project is None:
+			raise TypeError
+		project.projectName = newName
+		project.save()
+		return True
+	except:
+		return False

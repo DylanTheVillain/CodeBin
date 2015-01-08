@@ -56,6 +56,26 @@
             var url = "{% url 'browser:getforks' %}";
             SendAjaxRequest(func, true, url, headers, message);
         }
+        function ChangeProjectName()
+        {
+            var newName = document.getElementById("alternametext").value;
+            for (var index = 0; index < newName.length; index++)
+            {
+                if (newName[index] != " " && newName[index] != ' ')
+                {
+                    func = function(ajaxresponse)
+                    {
+                        document.getElementById("console").innerHTML += ajaxresponse;
+                    }
+                    var message = "projecthash={{ projectdata.projectHash }}&name=";
+                    message += newName;
+                    var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
+                    var url = "{% url 'editor:altername' %}";
+                    SendAjaxRequest(func, true, url, headers, message);
+                    return;
+                }
+            }
+        }
         function LoadForks(ajaxresponse)
         {
             var ajaxJson = JSON.parse(ajaxresponse);
@@ -87,6 +107,10 @@
     <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
         {{ option }}
     </button>
+    <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
+        Change Name
+    </button>
+    <input type = "text" class = "controlbuttons" id = "alternametext">
     <div id = "editor"></div>
     <pre id = "console"></pre>
     <pre id = "output"></pre>
