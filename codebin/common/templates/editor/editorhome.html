@@ -17,7 +17,7 @@
             var message = "projecthash={{ projectdata.projectHash }}&code=" + code;
             func = function(ajaxresponse)
             {
-                document.getElementById("console").innerHTML += ajaxresponse;
+                AddToConsole(ajaxresponse);
             }
             var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
             var url = "{% url 'editor:savecode' %}"
@@ -27,7 +27,7 @@
         {
             func = function(ajaxresponse)
             {
-                document.getElementById("console").innerHTML += ajaxresponse;
+                AddToConsole(ajaxresponse);
             }
             var message = "projecthash={{ projectdata.projectHash }}";
             var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
@@ -38,7 +38,7 @@
         {
             func = function(ajaxresponse)
             {
-                document.getElementById("alterpublicprivate").innerHTML = ajaxresponse;
+                AddToConsole(ajaxresponse);
             }
             var message = "projecthash={{ projectdata.projectHash }}";
             var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
@@ -65,7 +65,8 @@
                 {
                     func = function(ajaxresponse)
                     {
-                        document.getElementById("console").innerHTML += ajaxresponse;
+                        document.getElementById("name").innerHTML = newName;
+                        AddToConsole(ajaxresponse);
                     }
                     var message = "projecthash={{ projectdata.projectHash }}&name=";
                     message += newName;
@@ -75,15 +76,25 @@
                     return;
                 }
             }
+            AddToConsole("The name was not changed.");
         }
         function LoadForks(ajaxresponse)
         {
             var ajaxJson = JSON.parse(ajaxresponse);
         }
+        function AddToConsole(text)
+        {
+            var devConsole = document.getElementById("console");
+            devConsole.innerHTML += text;
+            devConsole.innerHTML += "\n";
+        }
     </script>
 {% endblock %}
 
 {% block body %}
+    <h3 id = "name">
+        {{ projectdata.projectName }}
+    </h3>
     <div id = "forks">
         <h3>
             Forked From
