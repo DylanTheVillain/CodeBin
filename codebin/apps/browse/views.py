@@ -4,7 +4,10 @@ from database.project import interface
 import json
 
 def Index(request):
-	projects = interface.GetPublicProjects()
+	if 'filterstring' in request.GET:
+		projects = interface.GetPublicProjects(request.GET['filterstring'])
+	else:
+		projects = interface.GetPublicProjects()
 	htmldata = {
 		'projects':projects
 	}
