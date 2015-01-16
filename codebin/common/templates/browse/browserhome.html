@@ -9,7 +9,6 @@
 {% block body %}
 	<div id = "projectsearch">
 		<form method = "GET" action = "{% url 'browser:index' %}">
-			{% csrf_token %}
 			<input type = "text" name = "filterstring"/>
 			<input type = "submit" name = "submit" value = "Search"/>
 		</form>
