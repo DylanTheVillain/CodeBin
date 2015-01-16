@@ -1,8 +1,8 @@
 <html>
     <head>
+        {% load staticfiles %}
+        <link rel = "stylesheet" href = "{% static 'css/home.css' %}" type = "text/css"/>
         {% block staticfiles %}
-            {% load staticfiles %}
-            <link rel = "stylesheet" href = "{% static 'css/home.css' %}" type = "text/css"/>
         {% endblock %}
     </head>
     <body>

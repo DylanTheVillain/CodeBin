@@ -1,7 +1,6 @@
 button.controlbuttons
 {
-	display: block;
-	margin-bottom: 5px;
+	margin-right: 5px;
 }
 #output, #mycanvas, #console
 {
@@ -16,8 +15,13 @@ button.controlbuttons
 #editor
 {
 	position: absolute;
-	top: 50px;
-	bottom: 150px;
+	top: 100px;
+	bottom: 100px;
 	left: 50px;
 	width: 500px;
+}
+#control li
+{
+	display: inline;
+	list-style-type: none;
 }

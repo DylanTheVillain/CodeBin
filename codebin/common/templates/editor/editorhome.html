@@ -92,40 +92,61 @@
 {% endblock %}
 
 {% block body %}
-    <h3 id = "name">
-        {{ projectdata.projectName }}
-    </h3>
-    <div id = "forks">
-        <h3>
-            Forked From
-        </h3>
-        <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
-            {{ parent }}
-        </a>
-        <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
-            View Forks
-        </button>
-    </div>
-    <button type = "button" onclick = "runit()" class = "controlbuttons">
-        Run
-    </button>
-    <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
-        Save
-    </button>
-    <button type = "button" onclick = "Fork()" class = "controlbuttons">
-        Fork
-    </button>
-    <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
-        {{ option }}
-    </button>
-    <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
-        Change Name
-    </button>
-    <input type = "text" class = "controlbuttons" id = "alternametext">
+
+    <ul id = "control">
+        <li>
+            <h3 id = "name">
+                Name: {{ projectdata.projectName }}
+            </h3>
+        </li>
+        <li>
+            <div id = "forks">
+                <p>
+                    Forked from:
+                    <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
+                        {{ parent }}
+                    </a>
+                </p>    
+            </div>
+        </li>
+        <li>
+            <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
+                View Forks
+            </button>
+        </li>
+        <li>
+            <button type = "button" onclick = "runit()" class = "controlbuttons">
+                Run
+            </button>
+        </li>
+        <li>
+            <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
+                Save
+            </button>
+        </li>
+        <li>
+            <button type = "button" onclick = "Fork()" class = "controlbuttons">
+                Fork
+            </button>
+        </li>
+        <li>
+            <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
+                {{ option }}
+            </button>
+        </li>
+        <li>
+            <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
+                Change Name
+            </button>
+            <input type = "text" class = "controlbuttons" id = "alternametext">
+        </li>
+    </ul>
     <div id = "editor"></div>
-    <pre id = "console"></pre>
-    <pre id = "output"></pre>
-    <canvas id = "mycanvas"></mycanvas>
+    <div id = "output">
+        <pre id = "console"></pre>
+        <pre id = "output"></pre>
+        <canvas id = "mycanvas"></mycanvas>
+    </div>
     <script>
         var editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
