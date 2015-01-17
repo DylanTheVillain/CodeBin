@@ -45,17 +45,6 @@
             var url = "{% url 'editor:alterpublicprivate' %}";
             SendAjaxRequest(func, true, url, headers, message);
         }
-        function ViewForks()
-        {
-            func = function(ajaxresponse)
-            {
-                LoadForks(ajaxresponse);
-            }
-            var message = "projecthash={{ projectdata.projectHash }}";
-            var headers = [["Content-Type","application/x-www-form-urlencoded"],["X-CSRFToken", "{{ csrf_token }}"]];
-            var url = "{% url 'browser:getforks' %}";
-            SendAjaxRequest(func, true, url, headers, message);
-        }
         function ChangeProjectName()
         {
             var newName = document.getElementById("alternametext").value;
@@ -77,10 +66,6 @@
                 }
             }
             AddToConsole("The name was not changed.");
-        }
-        function LoadForks(ajaxresponse)
-        {
-            var ajaxJson = JSON.parse(ajaxresponse);
         }
         function AddToConsole(text)
         {
@@ -110,9 +95,11 @@
             <div id = "control">
                 <ul>
                     <li>
-                        <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
-                            View Forks
-                        </button>
+                        <a href = "{% url 'browser:getforks' %}?projecthash={{ projectdata.projectHash }}" class = "controlbuttons">
+                            <button>
+                                View Forks
+                            </button>
+                        </a>
                     </li>
                     <li>
                         <button type = "button" onclick = "runit()" class = "controlbuttons">

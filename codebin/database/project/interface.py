@@ -10,6 +10,11 @@ def GetForks(forkedParentHash):
 	forks = Forked.objects.filter(forkedParentHash = forkedParentHash)
 	return forks
 
+def GetForksProject(forkedParentHash):
+	forks = GetForks(forkedParentHash)
+	projects = [GetProjectFromHash(fork.forkedHash) for fork in forks]
+	return projects
+
 def GetProjectFromHash(projectHash):
 	try:
 		project = Project.objects.get(projectHash = projectHash)
