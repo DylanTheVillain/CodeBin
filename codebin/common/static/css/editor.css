@@ -20,22 +20,20 @@ button.controlbuttons
 	left: 50px;
 	width: 500px;
 }
-#control
+#control ul
 {
-	float: left;
+	padding-left: 0px;
 }
 #control ul li
 {
 	display: inline;
 	list-style-type: none;
 }
-#vitalinformation
-{
-	display:block;
-	float: left;
-	padding-left: 40px;
-}
 #vitalinformation h3
 {
 	margin-top: 5px;
+}
+#vitalinformation-control
+{
+	list-style-type: none;
 }

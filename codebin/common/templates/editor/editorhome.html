@@ -92,52 +92,58 @@
 {% endblock %}
 
 {% block body %}
-    <div id = "vitalinformation">
-        <h3 id = "name">
-            Name: {{ projectdata.projectName }}
-        </h3>
-        <p>
-            Forked from:
-            <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
-                {{ parent }}
-            </a>
-        </p>
-    </div>
-    <div id = "control">
-        <ul>
-            <li>
-                <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
-                    View Forks
-                </button>
-            </li>
-            <li>
-                <button type = "button" onclick = "runit()" class = "controlbuttons">
-                    Run
-                </button>
-            </li>
-            <li>
-                <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
-                    Save
-                </button>
-            </li>
-            <li>
-                <button type = "button" onclick = "Fork()" class = "controlbuttons">
-                    Fork
-                </button>
-            </li>
-            <li>
-                <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
-                    {{ option }}
-                </button>
-            </li>
-            <li>
-                <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
-                    Change Name
-                </button>
-                <input type = "text" class = "controlbuttons" id = "alternametext">
-            </li>
-        </ul>
-    </div>
+    <ul id = "vitalinformation-control">
+        <li>
+            <div id = "vitalinformation">
+                <h3 id = "name">
+                    Name: {{ projectdata.projectName }}
+                </h3>
+                <p>
+                    Forked from:
+                    <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
+                        {{ parent }}
+                    </a>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id = "control">
+                <ul>
+                    <li>
+                        <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
+                            View Forks
+                        </button>
+                    </li>
+                    <li>
+                        <button type = "button" onclick = "runit()" class = "controlbuttons">
+                            Run
+                        </button>
+                    </li>
+                    <li>
+                        <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
+                            Save
+                        </button>
+                    </li>
+                    <li>
+                        <button type = "button" onclick = "Fork()" class = "controlbuttons">
+                            Fork
+                        </button>
+                    </li>
+                    <li>
+                        <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
+                            {{ option }}
+                        </button>
+                    </li>
+                    <li>
+                        <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
+                            Change Name
+                        </button>
+                        <input type = "text" class = "controlbuttons" id = "alternametext">
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
     <div id = "editor"></div>
     <div id = "output">
         <pre id = "console"></pre>
