@@ -65,7 +65,7 @@
                 {
                     func = function(ajaxresponse)
                     {
-                        document.getElementById("name").innerHTML = newName;
+                        document.getElementById("name").innerHTML = "Name: " + newName;
                         AddToConsole(ajaxresponse);
                     }
                     var message = "projecthash={{ projectdata.projectHash }}&name=";
@@ -92,55 +92,52 @@
 {% endblock %}
 
 {% block body %}
-
-    <ul id = "control">
-        <li>
-            <h3 id = "name">
-                Name: {{ projectdata.projectName }}
-            </h3>
-        </li>
-        <li>
-            <div id = "forks">
-                <p>
-                    Forked from:
-                    <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
-                        {{ parent }}
-                    </a>
-                </p>    
-            </div>
-        </li>
-        <li>
-            <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
-                View Forks
-            </button>
-        </li>
-        <li>
-            <button type = "button" onclick = "runit()" class = "controlbuttons">
-                Run
-            </button>
-        </li>
-        <li>
-            <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
-                Save
-            </button>
-        </li>
-        <li>
-            <button type = "button" onclick = "Fork()" class = "controlbuttons">
-                Fork
-            </button>
-        </li>
-        <li>
-            <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
-                {{ option }}
-            </button>
-        </li>
-        <li>
-            <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
-                Change Name
-            </button>
-            <input type = "text" class = "controlbuttons" id = "alternametext">
-        </li>
-    </ul>
+    <div id = "vitalinformation">
+        <h3 id = "name">
+            Name: {{ projectdata.projectName }}
+        </h3>
+        <p>
+            Forked from:
+            <a href = "{% url 'editor:index' %}?projecthash={{ parent }}">
+                {{ parent }}
+            </a>
+        </p>
+    </div>
+    <div id = "control">
+        <ul>
+            <li>
+                <button type = "button" onclick = "ViewForks()" class = "controlbuttons">
+                    View Forks
+                </button>
+            </li>
+            <li>
+                <button type = "button" onclick = "runit()" class = "controlbuttons">
+                    Run
+                </button>
+            </li>
+            <li>
+                <button type = "button" onclick = "SaveCode()" class = "controlbuttons">
+                    Save
+                </button>
+            </li>
+            <li>
+                <button type = "button" onclick = "Fork()" class = "controlbuttons">
+                    Fork
+                </button>
+            </li>
+            <li>
+                <button type = "button" onclick = "AlterPublicPrivate()" class = "controlbuttons" id = "alterpublicprivate">
+                    {{ option }}
+                </button>
+            </li>
+            <li>
+                <button type = "button" onclick = "ChangeProjectName()" class = "controlbuttons">
+                    Change Name
+                </button>
+                <input type = "text" class = "controlbuttons" id = "alternametext">
+            </li>
+        </ul>
+    </div>
     <div id = "editor"></div>
     <div id = "output">
         <pre id = "console"></pre>

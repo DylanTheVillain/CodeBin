@@ -20,8 +20,21 @@ button.controlbuttons
 	left: 50px;
 	width: 500px;
 }
-#control li
+#control
+{
+	float: left;
+}
+#control ul li
 {
 	display: inline;
 	list-style-type: none;
+}
+#vitalinformation
+{
+	float: left;
+	padding-left: 40px;
+}
+#vitalinformation h3
+{
+	margin-top: 5px;
 }
