@@ -85,8 +85,8 @@
         function AddToConsole(text)
         {
             var devConsole = document.getElementById("console");
-            devConsole.innerHTML += text;
-            devConsole.innerHTML += "\n";
+            devConsole.innerText += text;
+            devConsole.innerText += "\n";
         }
     </script>
 {% endblock %}
@@ -145,7 +145,7 @@
         </li>
     </ul>
     <div id = "editor"></div>
-    <div id = "output">
+    <div id = "outputdiv">
         <pre id = "console"></pre>
         <pre id = "output"></pre>
         <canvas id = "mycanvas"></mycanvas>
