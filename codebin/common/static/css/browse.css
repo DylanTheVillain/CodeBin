@@ -1,1 +1,9 @@
-/* Will contain browser css */
+#projectsearch
+{
+	margin-bottom: 10px;
+	padding-left: 40px;
+}
+#projects ul li
+{
+	list-style-type: none;
+}
