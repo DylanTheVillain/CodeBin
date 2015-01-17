@@ -15,8 +15,8 @@ button.controlbuttons
 #editor
 {
 	position: absolute;
-	top: 100px;
-	bottom: 100px;
+	top: 150px;
+	bottom: 50px;
 	left: 50px;
 	width: 500px;
 }
@@ -31,6 +31,7 @@ button.controlbuttons
 }
 #vitalinformation
 {
+	display:block;
 	float: left;
 	padding-left: 40px;
 }
