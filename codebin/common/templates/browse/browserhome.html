@@ -1,5 +1,4 @@
-{% extends "home/home.html" %}
-{% load htmltags %}
+{% extends "home/home.html" %
 
 {% block staticfiles %}
 	{% load staticfiles %}
@@ -7,13 +6,13 @@
 {% endblock %}
 
 {% block body %}
-	<div id = "projectsearch">
+	<div class = "projectsearch">
 		<form method = "GET" action = "{% url 'browser:index' %}">
 			<input type = "text" name = "filterstring"/>
 			<input type = "submit" name = "submit" value = "Search"/>
 		</form>
 	</div>
-	<div id = "projects">
+	<div class = "projects">
 		<ul>
 			{% for project in projects %}
 				<li>

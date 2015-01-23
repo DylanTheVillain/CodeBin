@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block body %}
-	<div id = "forksearch">
+	<div class = "projectsearch">
 		<form method = "GET" action = "{% url 'browser:getforks' %}">
 			<input type = "hidden" name = "projecthash" value = "{{ projecthash }}"/>
 			<input type = "text" name = "filterstring"/>
 			<input type = "submit" name = "submit" value = "Search"/>
 		</form>
 	</div>
-	<div id = "projects">
+	<div class = "projects">
 		<ul>
 			{% for project in projects %}
 			<li>

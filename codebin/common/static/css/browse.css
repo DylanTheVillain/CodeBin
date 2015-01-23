@@ -1,9 +1,9 @@
-#projectsearch
+div.projectsearch
 {
 	margin-top: 10px;
 	padding-left: 40px;
 }
-#projects ul li
+div.projects ul li
 {
 	list-style-type: none;
 }
