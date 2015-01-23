@@ -1,0 +1,29 @@
+{% extends 'home/home.html' %}
+
+{% block static_files %}
+	{% load staticfiles %}
+	<link rel = "stylesheet" href = "{% static 'css/browse.css' %}" type = "text/css"/>
+{% endblock %}
+
+{% block body %}
+	<div id = "forksearch">
+		<form method = "GET" action = "{% url 'browser:getforks' %}">
+			<input type = "hidden" name = "projecthash" value = "{{ projecthash }}"/>
+			<input type = "text" name = "filterstring"/>
+			<input type = "submit" name = "submit" value = "Search"/>
+		</form>
+	</div>
+	<div id = "projects">
+		<ul>
+			{% for project in projects %}
+			<li>
+				<a href = "{% url 'editor:index' %}?projecthash={{ project.projectHash }}" target = "_blank">
+					{{ project.projectName }}
+				</br>
+				{{ project.projectHash }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

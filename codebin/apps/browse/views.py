@@ -14,8 +14,12 @@ def Index(request):
 	return render(request, 'browse/browserhome.html', htmldata)
 
 def GetForks(request):
-	projects = interface.GetForksProject(request.GET['projecthash'])
+	if 'filterstring' in request.GET:
+		projects = interface.GetForksProject(request.GET['projecthash'], request.GET['filterstring'])
+	else:
+		projects = interface.GetForksProject(request.GET['projecthash'])
 	htmldata = {
-		'projects':projects
+		'projects':projects,
+		'projecthash':request.GET['projecthash']
 	}
 	return render(request, 'browse/forks.html', htmldata)

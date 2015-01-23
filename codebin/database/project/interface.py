@@ -3,16 +3,16 @@ from common.helpers import hashtool
 import time
 
 def GetPublicProjects(filterString = ''):
-	projects = Project.objects.filter(projectPublic = True, projectName__contains = filterString)
+	projects = Project.objects.filter(projectPublic = True, projectName__icontains = filterString)
 	return projects
 
 def GetForks(forkedParentHash):
 	forks = Forked.objects.filter(forkedParentHash = forkedParentHash)
 	return forks
 
-def GetForksProject(forkedParentHash):
+def GetForksProject(forkedParentHash, filterString = ''):
 	forks = GetForks(forkedParentHash)
-	projects = [GetProjectFromHash(fork.forkedHash) for fork in forks]
+	projects = Project.objects.filter(pk__in = forks, projectName__icontains = filterString)
 	return projects
 
 def GetProjectFromHash(projectHash):
