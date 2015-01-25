@@ -11,8 +11,8 @@ def GetForks(forkedParentHash):
 	return forks
 
 def GetForksProject(forkedParentHash, filterString = ''):
-	forks = GetForks(forkedParentHash)
-	projects = Project.objects.filter(pk__in = forks, projectName__icontains = filterString)
+	forkHashes = GetForks(forkedParentHash).values_list('forkedHash', flat = True)
+	projects = Project.objects.filter(projectHash__in = forkHashes, projectName__icontains = filterString)
 	return projects
 
 def GetProjectFromHash(projectHash):

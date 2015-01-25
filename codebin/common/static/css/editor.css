@@ -1,22 +1,39 @@
 button.controlbuttons
 {
+	background-color: rgb(100, 100, 100);
+	border-radius:6px;
+	color: rgb(20, 20, 20);
+	font-size: 20px;
+	text-decoration: none;
+	cursor: pointer;
+	border:none;
 	margin-right: 5px;
+	transition: 1s;
 }
-a.controlbuttons
+
+button.controlbuttons:hover
 {
-	margin-right: 5px;
+	transition: 1s;
+	background-color: rgb(80, 80, 80);
+}
+
+a
+{
 	text-decoration: none;
 }
+
 #output, #mycanvas, #console
 {
 	float: right;
 	display: block;
 	margin-left: 5px;
 }
+
 #mycanvas
 {
 	background-color: rgb(230, 230, 230);
 }
+
 #editor
 {
 	position: absolute;
@@ -25,19 +42,24 @@ a.controlbuttons
 	left: 50px;
 	width: 500px;
 }
+
 #control ul
 {
 	padding-left: 0px;
+	text-decoration: none;
 }
+
 #control ul li
 {
 	display: inline;
 	list-style-type: none;
 }
+
 #vitalinformation h3
 {
 	margin-top: 5px;
 }
+
 #vitalinformation-control
 {
 	list-style-type: none;
